@@ -45,8 +45,9 @@ const updateReview = asyncHandler(async (req, res) => {
 
 const deleteReview = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const review = await Review.findByIdAndDelete(id);
+    const review = await Review.findById(id);
     if (!review) throw new CustomError(400, 'Xóa đánh giá không thành công')
+    await review.deleteOne();
     res.status(200).json({ msg: 'Xoá bình luận thành công' });
 });
 

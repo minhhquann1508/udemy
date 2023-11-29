@@ -55,6 +55,11 @@ const getSingleCourse = asyncHandler(async (req, res) => {
         .findByIdAndUpdate(id, { $inc: { numberOfViews: 1 } }, { new: true, runValidators: true })
         .populate('owner', 'fullname')
         .populate('category', 'title')
+        .populate({
+            path: 'reviews',
+            populate: { path: 'postedBy', select: 'fullname avatar' },
+            select: '-__v'
+        })
         .select('-__v');
     if (!course) throw new CustomError(404, `Không tìm thấy khóa học với id: ${id}`);
     res.status(200).json({ course });

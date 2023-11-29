@@ -20,6 +20,7 @@ const userRouter = require('./routes/user');
 const categoryRouter = require('./routes/category');
 const courseRouter = require('./routes/course');
 const reviewRouter = require('./routes/review');
+const cartRouter = require('./routes/cart');
 
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.json());
@@ -40,6 +41,7 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/category', categoryRouter);
 app.use('/api/v1/course', courseRouter);
 app.use('/api/v1/review', reviewRouter);
+app.use('/api/v1/cart', cartRouter);
 
 app.use(errorHandler);
 app.use(notFound);
