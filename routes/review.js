@@ -4,12 +4,14 @@ const {
     getAllReviewOfCourse,
     getSingleReview,
     updateReview,
-    deleteReview
+    deleteReview,
+    getAllReview
 } = require('../controllers/reviewController');
 const { verifyToken, checkRolePermission } = require('../middleware/verifyToken');
 
 router
     .route('/')
+    .get(getAllReview)
     .post(verifyToken, createReview);
 
 router

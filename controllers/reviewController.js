@@ -8,6 +8,20 @@ const createReview = asyncHandler(async (req, res) => {
     res.status(201).json({ msg: 'Đăng bình luận thành công', review });
 });
 
+const getAllReview = asyncHandler(async (req, res) => {
+    const page = req.query.page || 1;
+    const limit = req.query.limit || 20;
+    const skip = (page - 1) * limit;
+    const review = await Review
+        .find({})
+        .skip(skip)
+        .limit(limit)
+        .populate('postedBy', 'fullname avatar role')
+        .populate('course', 'title thumbnail')
+        .select('-__v');
+    res.status(200).json({ review });
+});
+
 const getAllReviewOfCourse = asyncHandler(async (req, res) => {
     const { courseId } = req.params;
     const reviews = await Review
@@ -53,6 +67,7 @@ const deleteReview = asyncHandler(async (req, res) => {
 
 module.exports = {
     createReview,
+    getAllReview,
     getAllReviewOfCourse,
     getSingleReview,
     updateReview,
