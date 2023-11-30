@@ -42,6 +42,7 @@ const login = asyncHandler(async (req, res) => {
     res.status(200).json({
         msg: 'Đăng nhập thành công',
         user: {
+            id: user._id,
             email: user.email,
             phone: user.phone,
             fullname: user.fullname,
