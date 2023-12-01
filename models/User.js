@@ -36,6 +36,11 @@ const UserSchema = new mongoose.Schema({
         default: 'user',
         enum: ['user', 'admin', 'teacher']
     },
+    youtube: String,
+    facebook: String,
+    website: String,
+    twiter: String,
+    linkdedin: String,
     requestTeacher: {
         type: Boolean,
         default: false

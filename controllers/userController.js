@@ -66,13 +66,19 @@ const checkRequestTeacher = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const { userId } = req.user;
-    const { fullname, phone, gender } = req.body;
+    const { fullname, phone, gender, youtube, website, twiter, linkdedin, desc } = req.body;
     const user = await User.findById(id).select(ignoreKey);
     if (!user) throw new CustomError(400, `Không tìm thấy người dùng với id: ${id}`);
     if (user._id.toString() !== userId) throw new CustomError(401, 'Bạn không đủ quyền thực hiện')
     user.fullname = fullname;
     user.phone = phone;
     user.gender = gender;
+    user.youtube = youtube;
+    user.facebook = facebook;
+    user.website = website;
+    user.twiter = twiter;
+    user.linkdedin = linkdedin;
+    user.desc = desc;
     await user.save();
     res.status(200).json({ msg: 'Cập nhật thành công', user });
 });
