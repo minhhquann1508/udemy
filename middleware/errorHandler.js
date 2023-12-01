@@ -16,7 +16,7 @@ const errorHandler = async (err, req, res, next) => {
         res.status(404).json({ msg: `Không tìm thấy id: ${err.value}` })
     }
     else {
-        res.status(500).json({ msg: 'Somthing went wrong.Please try again !' })
+        res.status(500).json({ msg: 'Hệ thống đang có lỗi.Vui lòng thử lại sau !' })
     }
 };
 
