@@ -76,9 +76,9 @@ const updateUser = asyncHandler(async (req, res) => {
     user.youtube = youtube;
     user.facebook = facebook;
     user.website = website;
-    // user.twiter = twiter;
-    // user.linkdedin = linkdedin;
-    // user.desc = desc;
+    user.twiter = twiter;
+    user.linkdedin = linkdedin;
+    user.desc = desc;
     await user.save();
     res.status(200).json({ msg: 'Cập nhật thành công', user });
 });
